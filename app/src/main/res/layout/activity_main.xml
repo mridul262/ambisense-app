@@ -6,15 +6,58 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
-
+    android:background="@color/background"
+    tools:context=".MainActivity"
+    >
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/homeHeading"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="66dp"
+        android:layout_marginStart="18dp"
+        >
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:id="@+id/appName"
+        android:text="@string/app_name"
+        app:layout_constraintTop_toTopOf="@id/homeHeading"
+        app:layout_constraintLeft_toLeftOf="@id/homeHeading"
+        android:textSize="32sp"
+        android:textFontWeight="600"
+        android:fontFamily="Open Sans"
+        />
+    </LinearLayout>
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/soundsIdentified"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toRightOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/homeHeading"
+    android:orientation="vertical"
+    >
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/soundsIdentified_Counter"
+        android:text="23,238"
+        android:textSize="36sp"
+        android:textFontWeight="600"
+        android:textAlignment="center"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/soundsIdentified_Text"
+        android:text="Sounds Identified"
+        android:textSize="14sp"
+        android:textFontWeight="600"
+        android:textAlignment="center"
+        android:layout_marginTop="10dp"
+        />
 
+</LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
