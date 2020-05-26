@@ -52,189 +52,230 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/soundsIdentified">
 
-        <RelativeLayout
-            android:id="@+id/soundsIdentifiedCard_1"
+        <com.ambisense.ambisense.ui.SoundsIdentifiedCard
             android:layout_width="148dp"
             android:layout_height="71dp"
             android:layout_row="0"
             android:layout_column="0"
-            android:background="@drawable/card">
-
-            <ImageView
-                android:id="@+id/soundsIdentifiedCard_1_Img"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="19dp"
-                android:src="@drawable/icon_fire"
-                android:contentDescription="Icon" />
-
-            <TextView
-                android:id="@+id/soundsIdentifiedCard_1_Counter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_marginStart="13dp"
-
-                android:layout_marginTop="17dp"
-                android:layout_marginEnd="10dp"
-                android:layout_toEndOf="@id/soundsIdentifiedCard_1_Img"
-                android:text="@string/home_soundsIdentifiedCard1Counter"
-                android:textColor="@color/black"
-                android:textFontWeight="600"
-                android:textSize="18sp" />
-
-            <TextView
-                android:id="@+id/soundsIdentifiedCard_1_Name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/soundsIdentifiedCard_1_Counter"
-                android:layout_alignStart="@id/soundsIdentifiedCard_1_Counter"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="10dp"
-                android:layout_marginBottom="14dp"
-                android:text="@string/home_soundsIdentifiedCard1Name"
-                android:textColor="@color/gray"
-                android:textSize="14sp" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/soundsIdentifiedCard_2"
+            android:background="@drawable/card"
+            app:iconSrc="icon_fire"
+            app:name="Fire Alarm"
+            app:counter="1938"
+            />
+        <com.ambisense.ambisense.ui.SoundsIdentifiedCard
             android:layout_width="148dp"
             android:layout_height="71dp"
             android:layout_row="0"
             android:layout_column="1"
-            android:background="@drawable/card">
-
-            <ImageView
-                android:id="@+id/soundsIdentifiedCard_2_Img"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="19dp"
-                android:src="@drawable/icon_fire" />
-
-            <TextView
-                android:id="@+id/soundsIdentifiedCard_2_Counter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_marginStart="13dp"
-
-                android:layout_marginTop="17dp"
-                android:layout_marginEnd="10dp"
-                android:layout_toEndOf="@id/soundsIdentifiedCard_2_Img"
-                android:text="@string/home_soundsIdentifiedCard2Counter"
-                android:textColor="@color/black"
-                android:textFontWeight="600"
-                android:textSize="18sp" />
-
-            <TextView
-                android:id="@+id/soundsIdentifiedCard_2_Name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/soundsIdentifiedCard_2_Counter"
-                android:layout_alignStart="@id/soundsIdentifiedCard_2_Counter"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="10dp"
-                android:layout_marginBottom="14dp"
-                android:text="@string/home_soundsIdentifiedCard2Name"
-                android:textColor="@color/gray"
-                android:textSize="14sp" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/soundsIdentifiedCard_3"
+            android:background="@drawable/card"
+            app:iconSrc="icon_fire"
+            app:name="Fire Alarm"
+            app:counter="1938"
+            />
+        <com.ambisense.ambisense.ui.SoundsIdentifiedCard
             android:layout_width="148dp"
             android:layout_height="71dp"
             android:layout_row="1"
             android:layout_column="0"
-            android:background="@drawable/card">
-
-            <ImageView
-                android:id="@+id/soundsIdentifiedCard_3_Img"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="19dp"
-                android:src="@drawable/icon_fire" />
-
-            <TextView
-                android:id="@+id/soundsIdentifiedCard_3_Counter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_marginStart="13dp"
-
-                android:layout_marginTop="17dp"
-                android:layout_marginEnd="10dp"
-                android:layout_toEndOf="@id/soundsIdentifiedCard_3_Img"
-                android:text="@string/home_soundsIdentifiedCard3Counter"
-                android:textColor="@color/black"
-                android:textFontWeight="600"
-                android:textSize="18sp" />
-
-            <TextView
-                android:id="@+id/soundsIdentifiedCard_3_Name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/soundsIdentifiedCard_3_Counter"
-                android:layout_alignStart="@id/soundsIdentifiedCard_3_Counter"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="10dp"
-                android:layout_marginBottom="14dp"
-                android:text="@string/home_soundsIdentifiedCard3Name"
-                android:textColor="@color/gray"
-                android:textSize="14sp" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/soundsIdentifiedCard_4"
+            android:background="@drawable/card"
+            app:iconSrc="icon_fire"
+            app:name="Fire Alarm"
+            app:counter="1938"
+            />
+        <com.ambisense.ambisense.ui.SoundsIdentifiedCard
             android:layout_width="148dp"
             android:layout_height="71dp"
             android:layout_row="1"
             android:layout_column="1"
-            android:background="@drawable/card">
+            android:background="@drawable/card"
+            app:iconSrc="icon_fire"
+            app:name="Fire Alarm"
+            app:counter="1938"
+            />
 
-            <ImageView
-                android:id="@+id/soundsIdentifiedCard_4_Img"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="19dp"
-                android:src="@drawable/icon_fire" />
+<!--        <RelativeLayout-->
+<!--            android:id="@+id/soundsIdentifiedCard_1"-->
+<!--            android:layout_width="148dp"-->
+<!--            android:layout_height="71dp"-->
+<!--            android:layout_row="0"-->
+<!--            android:layout_column="0"-->
+<!--            android:background="@drawable/card">-->
 
-            <TextView
-                android:id="@+id/soundsIdentifiedCard_4_Counter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_marginStart="13dp"
+<!--            <ImageView-->
+<!--                android:id="@+id/soundsIdentifiedCard_1_Img"-->
+<!--                android:layout_width="40dp"-->
+<!--                android:layout_height="40dp"-->
+<!--                android:layout_marginStart="10dp"-->
+<!--                android:layout_marginTop="19dp"-->
+<!--                android:src="@drawable/icon_fire"-->
+<!--                android:contentDescription="Icon" />-->
 
-                android:layout_marginTop="17dp"
-                android:layout_marginEnd="10dp"
-                android:layout_toEndOf="@id/soundsIdentifiedCard_4_Img"
-                android:text="@string/home_soundsIdentifiedCard4Counter"
-                android:textColor="@color/black"
-                android:textFontWeight="600"
-                android:textSize="18sp" />
+<!--            <TextView-->
+<!--                android:id="@+id/soundsIdentifiedCard_1_Counter"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_alignParentEnd="true"-->
+<!--                android:layout_marginStart="13dp"-->
 
-            <TextView
-                android:id="@+id/soundsIdentifiedCard_4_Name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/soundsIdentifiedCard_4_Counter"
-                android:layout_alignStart="@id/soundsIdentifiedCard_4_Counter"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="10dp"
-                android:layout_marginBottom="14dp"
-                android:text="@string/home_soundsIdentifiedCard4Name"
-                android:textColor="@color/gray"
-                android:textSize="14sp" />
-        </RelativeLayout>
+<!--                android:layout_marginTop="17dp"-->
+<!--                android:layout_marginEnd="10dp"-->
+<!--                android:layout_toEndOf="@id/soundsIdentifiedCard_1_Img"-->
+<!--                android:text="@string/home_soundsIdentifiedCard1Counter"-->
+<!--                android:textColor="@color/black"-->
+<!--                android:textFontWeight="600"-->
+<!--                android:textSize="18sp" />-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/soundsIdentifiedCard_1_Name"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_below="@id/soundsIdentifiedCard_1_Counter"-->
+<!--                android:layout_alignStart="@id/soundsIdentifiedCard_1_Counter"-->
+<!--                android:layout_alignParentEnd="true"-->
+<!--                android:layout_centerVertical="true"-->
+<!--                android:layout_marginEnd="10dp"-->
+<!--                android:layout_marginBottom="14dp"-->
+<!--                android:text="@string/home_soundsIdentifiedCard1Name"-->
+<!--                android:textColor="@color/gray"-->
+<!--                android:textSize="14sp" />-->
+<!--        </RelativeLayout>-->
+
+<!--        <RelativeLayout-->
+<!--            android:id="@+id/soundsIdentifiedCard_2"-->
+<!--            android:layout_width="148dp"-->
+<!--            android:layout_height="71dp"-->
+<!--            android:layout_row="0"-->
+<!--            android:layout_column="1"-->
+<!--            android:background="@drawable/card">-->
+
+<!--            <ImageView-->
+<!--                android:id="@+id/soundsIdentifiedCard_2_Img"-->
+<!--                android:layout_width="40dp"-->
+<!--                android:layout_height="40dp"-->
+<!--                android:layout_marginStart="10dp"-->
+<!--                android:layout_marginTop="19dp"-->
+<!--                android:src="@drawable/icon_fire" />-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/soundsIdentifiedCard_2_Counter"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_alignParentEnd="true"-->
+<!--                android:layout_marginStart="13dp"-->
+
+<!--                android:layout_marginTop="17dp"-->
+<!--                android:layout_marginEnd="10dp"-->
+<!--                android:layout_toEndOf="@id/soundsIdentifiedCard_2_Img"-->
+<!--                android:text="@string/home_soundsIdentifiedCard2Counter"-->
+<!--                android:textColor="@color/black"-->
+<!--                android:textFontWeight="600"-->
+<!--                android:textSize="18sp" />-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/soundsIdentifiedCard_2_Name"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_below="@id/soundsIdentifiedCard_2_Counter"-->
+<!--                android:layout_alignStart="@id/soundsIdentifiedCard_2_Counter"-->
+<!--                android:layout_alignParentEnd="true"-->
+<!--                android:layout_centerVertical="true"-->
+<!--                android:layout_marginEnd="10dp"-->
+<!--                android:layout_marginBottom="14dp"-->
+<!--                android:text="@string/home_soundsIdentifiedCard2Name"-->
+<!--                android:textColor="@color/gray"-->
+<!--                android:textSize="14sp" />-->
+<!--        </RelativeLayout>-->
+
+<!--        <RelativeLayout-->
+<!--            android:id="@+id/soundsIdentifiedCard_3"-->
+<!--            android:layout_width="148dp"-->
+<!--            android:layout_height="71dp"-->
+<!--            android:layout_row="1"-->
+<!--            android:layout_column="0"-->
+<!--            android:background="@drawable/card">-->
+
+<!--            <ImageView-->
+<!--                android:id="@+id/soundsIdentifiedCard_3_Img"-->
+<!--                android:layout_width="40dp"-->
+<!--                android:layout_height="40dp"-->
+<!--                android:layout_marginStart="10dp"-->
+<!--                android:layout_marginTop="19dp"-->
+<!--                android:src="@drawable/icon_fire" />-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/soundsIdentifiedCard_3_Counter"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_alignParentEnd="true"-->
+<!--                android:layout_marginStart="13dp"-->
+
+<!--                android:layout_marginTop="17dp"-->
+<!--                android:layout_marginEnd="10dp"-->
+<!--                android:layout_toEndOf="@id/soundsIdentifiedCard_3_Img"-->
+<!--                android:text="@string/home_soundsIdentifiedCard3Counter"-->
+<!--                android:textColor="@color/black"-->
+<!--                android:textFontWeight="600"-->
+<!--                android:textSize="18sp" />-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/soundsIdentifiedCard_3_Name"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_below="@id/soundsIdentifiedCard_3_Counter"-->
+<!--                android:layout_alignStart="@id/soundsIdentifiedCard_3_Counter"-->
+<!--                android:layout_alignParentEnd="true"-->
+<!--                android:layout_centerVertical="true"-->
+<!--                android:layout_marginEnd="10dp"-->
+<!--                android:layout_marginBottom="14dp"-->
+<!--                android:text="@string/home_soundsIdentifiedCard3Name"-->
+<!--                android:textColor="@color/gray"-->
+<!--                android:textSize="14sp" />-->
+<!--        </RelativeLayout>-->
+
+<!--        <RelativeLayout-->
+<!--            android:id="@+id/soundsIdentifiedCard_4"-->
+<!--            android:layout_width="148dp"-->
+<!--            android:layout_height="71dp"-->
+<!--            android:layout_row="1"-->
+<!--            android:layout_column="1"-->
+<!--            android:background="@drawable/card">-->
+
+<!--            <ImageView-->
+<!--                android:id="@+id/soundsIdentifiedCard_4_Img"-->
+<!--                android:layout_width="40dp"-->
+<!--                android:layout_height="40dp"-->
+<!--                android:layout_marginStart="10dp"-->
+<!--                android:layout_marginTop="19dp"-->
+<!--                android:src="@drawable/icon_fire" />-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/soundsIdentifiedCard_4_Counter"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_alignParentEnd="true"-->
+<!--                android:layout_marginStart="13dp"-->
+
+<!--                android:layout_marginTop="17dp"-->
+<!--                android:layout_marginEnd="10dp"-->
+<!--                android:layout_toEndOf="@id/soundsIdentifiedCard_4_Img"-->
+<!--                android:text="@string/home_soundsIdentifiedCard4Counter"-->
+<!--                android:textColor="@color/black"-->
+<!--                android:textFontWeight="600"-->
+<!--                android:textSize="18sp" />-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/soundsIdentifiedCard_4_Name"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_below="@id/soundsIdentifiedCard_4_Counter"-->
+<!--                android:layout_alignStart="@id/soundsIdentifiedCard_4_Counter"-->
+<!--                android:layout_alignParentEnd="true"-->
+<!--                android:layout_centerVertical="true"-->
+<!--                android:layout_marginEnd="10dp"-->
+<!--                android:layout_marginBottom="14dp"-->
+<!--                android:text="@string/home_soundsIdentifiedCard4Name"-->
+<!--                android:textColor="@color/gray"-->
+<!--                android:textSize="14sp" />-->
+<!--        </RelativeLayout>-->
     </GridLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
