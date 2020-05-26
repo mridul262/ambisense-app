@@ -7,30 +7,8 @@
     android:background="@color/background"
     android:orientation="vertical"
     tools:context=".MainActivity">
-    <LinearLayout
-        android:id="@+id/homeHeading"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="18dp"
-        android:layout_marginTop="66dp"
-        android:layout_marginBottom="20dp"
-        android:paddingBottom="20dp"
-        android:orientation="horizontal"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/appName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif"
-            android:text="@string/app_name"
-            android:textColor="@color/black"
-            android:textFontWeight="600"
-            android:textSize="32sp"
-            app:layout_constraintLeft_toLeftOf="@id/homeHeading"
-            app:layout_constraintTop_toTopOf="@id/homeHeading" />
-    </LinearLayout>
+    <include android:id="@+id/homeHeading" layout="@layout/app_title" />
 
     <LinearLayout
         android:id="@+id/soundsIdentified"
@@ -39,13 +17,14 @@
         android:orientation="vertical"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/homeHeading">
-
+        app:layout_constraintTop_toBottomOf="@id/homeHeading"
+        android:paddingBottom="15dp"
+        >
         <TextView
             android:id="@+id/soundsIdentified_Counter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="23,238"
+            android:text="@string/home_soundsIdentifiedCounter"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textFontWeight="600"
@@ -87,7 +66,8 @@
                 android:layout_height="40dp"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="19dp"
-                android:src="@drawable/icon_fire" />
+                android:src="@drawable/icon_fire"
+                android:contentDescription="Icon" />
 
             <TextView
                 android:id="@+id/soundsIdentifiedCard_1_Counter"
@@ -99,7 +79,7 @@
                 android:layout_marginTop="17dp"
                 android:layout_marginEnd="10dp"
                 android:layout_toEndOf="@id/soundsIdentifiedCard_1_Img"
-                android:text="1,930"
+                android:text="@string/home_soundsIdentifiedCard1Counter"
                 android:textColor="@color/black"
                 android:textFontWeight="600"
                 android:textSize="18sp" />
@@ -114,7 +94,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="14dp"
-                android:text="Fire Alarms"
+                android:text="@string/home_soundsIdentifiedCard1Name"
                 android:textColor="@color/gray"
                 android:textSize="14sp" />
         </RelativeLayout>
@@ -145,7 +125,7 @@
                 android:layout_marginTop="17dp"
                 android:layout_marginEnd="10dp"
                 android:layout_toEndOf="@id/soundsIdentifiedCard_2_Img"
-                android:text="1,930"
+                android:text="@string/home_soundsIdentifiedCard2Counter"
                 android:textColor="@color/black"
                 android:textFontWeight="600"
                 android:textSize="18sp" />
@@ -160,7 +140,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="14dp"
-                android:text="Fire Alarms"
+                android:text="@string/home_soundsIdentifiedCard2Name"
                 android:textColor="@color/gray"
                 android:textSize="14sp" />
         </RelativeLayout>
@@ -191,7 +171,7 @@
                 android:layout_marginTop="17dp"
                 android:layout_marginEnd="10dp"
                 android:layout_toEndOf="@id/soundsIdentifiedCard_3_Img"
-                android:text="1,930"
+                android:text="@string/home_soundsIdentifiedCard3Counter"
                 android:textColor="@color/black"
                 android:textFontWeight="600"
                 android:textSize="18sp" />
@@ -206,7 +186,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="14dp"
-                android:text="Fire Alarms"
+                android:text="@string/home_soundsIdentifiedCard3Name"
                 android:textColor="@color/gray"
                 android:textSize="14sp" />
         </RelativeLayout>
@@ -237,7 +217,7 @@
                 android:layout_marginTop="17dp"
                 android:layout_marginEnd="10dp"
                 android:layout_toEndOf="@id/soundsIdentifiedCard_4_Img"
-                android:text="1,930"
+                android:text="@string/home_soundsIdentifiedCard4Counter"
                 android:textColor="@color/black"
                 android:textFontWeight="600"
                 android:textSize="18sp" />
@@ -252,7 +232,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="14dp"
-                android:text="Fire Alarms"
+                android:text="@string/home_soundsIdentifiedCard4Name"
                 android:textColor="@color/gray"
                 android:textSize="14sp" />
         </RelativeLayout>

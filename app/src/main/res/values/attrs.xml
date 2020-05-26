@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="SoundsIdentifiedCard">
+        <attr name="iconSrc" format="string" />
+        <attr name="counter" format="integer" />
+        <attr name="name" format="string"/>
+    </declare-styleable>
+</resources>
