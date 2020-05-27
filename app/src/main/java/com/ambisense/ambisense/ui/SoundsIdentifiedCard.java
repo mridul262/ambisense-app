@@ -42,29 +42,36 @@ public class SoundsIdentifiedCard extends RelativeLayout {
         String name = attrArray.getString(R.styleable.SoundsIdentifiedCard_name);
 
         // ImageView code
-        ImageView imageView = (ImageView) findViewById(R.id.soundsIdentifiedCard_imageView);
-        int imageViewID = generateViewId();
-        imageView.setId(imageViewID);
+        ImageView imageView = findViewById(R.id.soundsIdentifiedCard_imageView);
+//        int imageViewID = generateViewId();
+//        imageView.setId(imageViewID);
         imageView.setImageResource(context.getResources().getIdentifier("drawable/" + iconSrc, null, "com.ambisense.ambisense"));
 
         // TextView1 code
-        TextView textView1 = (TextView) findViewById(R.id.soundsIdentifiedCard_textView1);
+        TextView textView1 = findViewById(R.id.soundsIdentifiedCard_textView1);
 
-        RelativeLayout.LayoutParams textViewLayout1 = new RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
-        textView1.setLayoutParams(textViewLayout1);
-        textViewLayout1.addRule(RelativeLayout.END_OF, imageViewID);
+//        RelativeLayout.LayoutParams textViewLayout1 = new RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+//        textView1.setLayoutParams(textViewLayout1);
+//        textViewLayout1.addRule(RelativeLayout.END_OF, imageViewID);
+//        textView1.setText(counter);
+
+
+        LayoutParams textViewLayout1 = (LayoutParams) textView1.getLayoutParams();
+        textViewLayout1.addRule(RelativeLayout.END_OF, R.id.soundsIdentifiedCard_imageView);
         textView1.setText(counter);
 
-        int textView1ID = generateViewId();
-        textView1.setId(textView1ID);
+//        int textView1ID = generateViewId();
+//        textView1.setId(textView1ID);
 
         // TextView2 code
-        TextView textView2 = (TextView) findViewById(R.id.soundsIdentifiedCard_textView2);
+        TextView textView2 = findViewById(R.id.soundsIdentifiedCard_textView2);
 
-        RelativeLayout.LayoutParams textViewLayout2 = new RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
-        textView2.setLayoutParams(textViewLayout2);
-        textViewLayout2.addRule(RelativeLayout.ALIGN_START, textView1ID);
-        textViewLayout2.addRule(RelativeLayout.BELOW, textView1ID);
+//        LayoutParams textViewLayout2 = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+//        textView2.setLayoutParams(textViewLayout2);
+
+        LayoutParams textViewLayout2 = (LayoutParams) textView2.getLayoutParams();
+        textViewLayout2.addRule(RelativeLayout.ALIGN_START, R.id.soundsIdentifiedCard_textView1);
+        textViewLayout2.addRule(RelativeLayout.BELOW, R.id.soundsIdentifiedCard_textView1);
         textView2.setText(name);
 
     }
