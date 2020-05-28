@@ -9,9 +9,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity
-            android:name=".SettingsActivity"
-            android:label="@string/title_activity_settings"></activity>
+        <service
+            android:name=".StartRecording"
+            android:enabled="true"
+            android:exported="true"></service>
+
+        <activity android:name=".SettingsActivity" />
+        <activity android:name=".ui.TitleBar" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

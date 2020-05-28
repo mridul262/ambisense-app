@@ -1,100 +1,42 @@
 package com.ambisense.ambisense;
 
-import android.os.Bundle;
-
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.preference.Preference;
-import androidx.preference.PreferenceFragmentCompat;
+import androidx.appcompat.widget.SwitchCompat;
 
-public class SettingsActivity extends AppCompatActivity implements
-        PreferenceFragmentCompat.OnPreferenceStartFragmentCallback {
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.widget.CompoundButton;
+import android.widget.TextView;
 
-    private static final String TITLE_TAG = "settingsActivityTitle";
+public class SettingsActivity extends AppCompatActivity {
+
+    private SharedPreferences appSharedPreference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.settings_activity);
-        if (savedInstanceState == null) {
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.settings, new HeaderFragment())
-                    .commit();
-        } else {
-            setTitle(savedInstanceState.getCharSequence(TITLE_TAG));
-        }
-        getSupportFragmentManager().addOnBackStackChangedListener(
-                new FragmentManager.OnBackStackChangedListener() {
-                    @Override
-                    public void onBackStackChanged() {
-                        if (getSupportFragmentManager().getBackStackEntryCount() == 0) {
-                            setTitle(R.string.title_activity_settings);
-                        }
-                    }
-                });
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(true);
-        }
+        setContentView(R.layout.activity_settings);
+        appSharedPreference = getSharedPreferences("AppSharedPreference", Context.MODE_PRIVATE);
+        init();
     }
 
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        // Save current activity title so we can set it again after a configuration change
-        outState.putCharSequence(TITLE_TAG, getTitle());
-    }
+    protected void init(){
+        SharedPreferences.Editor editor = appSharedPreference.edit();
 
-    @Override
-    public boolean onSupportNavigateUp() {
-        if (getSupportFragmentManager().popBackStackImmediate()) {
-            return true;
-        }
-        return super.onSupportNavigateUp();
-    }
+        // Identify Sounds setting
+        SwitchCompat identifySoundSwitch = findViewById(R.id.settings_identifySounds);
+        identifySoundSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            editor.putBoolean("identifySoundsSetting", isChecked);
+            TextView identifySoundsSettingTextView = findViewById(R.id.settings_identifySounds_description);
+            if (isChecked) {
+                identifySoundsSettingTextView.setText("Sounds are being identified");
+            } else {
+                identifySoundsSettingTextView.setText("Sounds are not being identified");
+            }
+        });
 
-    @Override
-    public boolean onPreferenceStartFragment(PreferenceFragmentCompat caller, Preference pref) {
-        // Instantiate the new Fragment
-        final Bundle args = pref.getExtras();
-        final Fragment fragment = getSupportFragmentManager().getFragmentFactory().instantiate(
-                getClassLoader(),
-                pref.getFragment());
-        fragment.setArguments(args);
-        fragment.setTargetFragment(caller, 0);
-        // Replace the existing Fragment with the new Fragment
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.settings, fragment)
-                .addToBackStack(null)
-                .commit();
-        setTitle(pref.getTitle());
-        return true;
-    }
 
-    public static class HeaderFragment extends PreferenceFragmentCompat {
-
-        @Override
-        public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
-            setPreferencesFromResource(R.xml.header_preferences, rootKey);
-        }
-    }
-
-    public static class MessagesFragment extends PreferenceFragmentCompat {
-
-        @Override
-        public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
-            setPreferencesFromResource(R.xml.messages_preferences, rootKey);
-        }
-    }
-
-    public static class SyncFragment extends PreferenceFragmentCompat {
-
-        @Override
-        public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
-            setPreferencesFromResource(R.xml.sync_preferences, rootKey);
-        }
+        editor.apply();
     }
 }

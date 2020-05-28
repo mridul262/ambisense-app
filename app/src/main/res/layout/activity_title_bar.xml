@@ -2,25 +2,24 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/homeHeading"
+    android:id="@+id/pageHeading"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginStart="18dp"
-    android:layout_marginTop="66dp"
+    android:layout_marginTop="10dp"
     android:layout_marginBottom="20dp"
     android:paddingBottom="20dp"
     android:orientation="horizontal"
     app:layout_constraintLeft_toLeftOf="parent"
     app:layout_constraintTop_toTopOf="parent">
     <TextView
-        android:id="@+id/appName"
+        android:id="@+id/pageName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif"
-        android:text="@string/app_name"
         android:textColor="@color/black"
         android:textFontWeight="600"
         android:textSize="32sp"
-        app:layout_constraintLeft_toLeftOf="@id/homeHeading"
-        app:layout_constraintTop_toTopOf="@id/homeHeading" />
+        app:layout_constraintLeft_toLeftOf="@id/pageHeading"
+        app:layout_constraintTop_toTopOf="@id/pageHeading" />
 </LinearLayout>
