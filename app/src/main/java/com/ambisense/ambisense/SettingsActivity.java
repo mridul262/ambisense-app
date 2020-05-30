@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.CompoundButton;
@@ -29,10 +30,13 @@ public class SettingsActivity extends AppCompatActivity {
         identifySoundSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
             editor.putBoolean("identifySoundsSetting", isChecked);
             TextView identifySoundsSettingTextView = findViewById(R.id.settings_identifySounds_description);
+            Intent recordingIntent = new Intent(this, StartRecording.class);
             if (isChecked) {
                 identifySoundsSettingTextView.setText("Sounds are being identified");
+                startService(recordingIntent);
             } else {
                 identifySoundsSettingTextView.setText("Sounds are not being identified");
+                stopService(recordingIntent);
             }
         });
 
