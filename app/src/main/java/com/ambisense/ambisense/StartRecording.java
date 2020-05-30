@@ -9,6 +9,13 @@ import android.util.Log;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLConnection;
+import java.nio.file.Files;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -64,5 +71,29 @@ public class StartRecording extends Service {
                 Log.e(e.getMessage(), "recording failed");
 
             }
+        final String POST_URL = "http://288b0f001382.ngrok.io";
+        String boundary = Long.toHexString(System.currentTimeMillis());
+        String CRLF = "\r\n";
+        String charset = "UTF-8";
+        URLConnection connection = new URL(POST_URL).openConnection();
+        connection.setDoInput(true);
+        connection.setRequestProperty("Content-Type", "multipart/form-data; boundary=" + boundary);
+        try (
+                OutputStream output = connection.getOutputStream();
+                PrintWriter writer = new PrintWriter(new OutputStreamWriter(output, charset), true);
+        ) {
+            writer.append("--" + boundary).append(CRLF);
+            writer.append("Content-Disposition: form-data; name=\"binaryFile\"; filename=\"" + audioFile.getName() + "\"").append(CRLF);
+            writer.append("Content-Length: " + audioFile.length()).append(CRLF);
+            writer.append("Content-Type: " + URLConnection.guessContentTypeFromName(audioFile.getName())).append(CRLF);
+            writer.append("Content-Transfer-Encoding: binary").append(CRLF);
+            writer.append(CRLF).flush();
+            Files.copy(audioFile.toPath(), output);
+            output.flush();
+
+            int responseCode = ((HttpURLConnection) connection).getResponseCode();
+            System.out.println("Response code: [" + responseCode + "]");
+        }
+
     }
 }
