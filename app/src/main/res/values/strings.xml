@@ -18,9 +18,7 @@
     <string name="sound_header">Sounds</string>
     <!--    Sound Preferences-->
     <string name="soundSettings_record">Identify Sounds</string>
-    <string name="soundSettings_record_summaryOn">Switch on to identify sounds</string>
-    <string name="soundSettings_record_summaryOff">Switch off to stop identifying sounds</string>
+    <string name="soundSettings_record_summaryOn">Switch off to identify sounds</string>
+    <string name="soundSettings_record_summaryOff">Switch on to stop identifying sounds</string>
     <string name="settingsIcon">Settings</string>
-
-
 </resources>

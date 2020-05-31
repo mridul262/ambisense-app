@@ -28,7 +28,6 @@
             android:textColor="@color/black"
             android:textFontWeight="900"
             app:showText="false"
-            android:checked="false"
             />
         <TextView
             android:id="@+id/settings_identifySounds_description"
