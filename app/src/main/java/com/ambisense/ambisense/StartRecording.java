@@ -30,20 +30,25 @@ public class StartRecording extends Service {
     private File audioFile;
     // The server url to which the audiofile is sent
     final private String postURL =  "http://288b0f001382.ngrok.io";
+    private boolean isAudioRecording = false;
 
     public StartRecording() {
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-
-        if(intent != null){
-            try {
-                recordingStart();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        try {
+            recordingStart();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+//        if(intent != null){
+//            try {
+//                recordingStart();
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//        }
 
         return START_STICKY;
 
@@ -52,7 +57,9 @@ public class StartRecording extends Service {
     @Override
     public void onDestroy() {
         try {
-            recordingStop();
+            if(isAudioRecording){
+                recordingStop();
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -60,12 +67,12 @@ public class StartRecording extends Service {
 
     }
 
-    //    @Override
-//    public IBinder onBind(Intent intent) {
-//        // TODO: Return the communication channel to the service.
-//        throw new UnsupportedOperationException("Not yet implemented");
-//    }
-//
+        @Override
+    public IBinder onBind(Intent intent) {
+        // TODO: Return the communication channel to the service.
+        throw new UnsupportedOperationException("Not yet implemented");
+    }
+
 
     private void recordingStart() throws IOException{
             recorder = new MediaRecorder();
@@ -77,16 +84,23 @@ public class StartRecording extends Service {
             recorder.setOutputFile(audioFile);
             recorder.prepare();
             recorder.start();
+            isAudioRecording = true;
+            System.out.println("Recording Started");
+            Log.e("Recording Start: ", "Started");
     }
 
     private void recordingStop() throws IOException {
         if(recorder != null){
             recorder.stop();
+//            recorder.reset();
             recorder.release();
+            isAudioRecording = false;
+            System.out.println("Recording Ended");
+            Log.e("Recording End: ", "Ended");
         }
 
         // Stores the audio file in bytes
-        byte audioByteArray[] = new byte[(int) audioFile.length()];
+        byte[] audioByteArray = new byte[(int) audioFile.length()];
 
         FileInputStream fileInputStream = new FileInputStream(audioFile);
         fileInputStream.read(audioByteArray);
@@ -105,10 +119,10 @@ public class StartRecording extends Service {
         String charset = "UTF-8";
 
         PrintWriter writer = new PrintWriter(new OutputStreamWriter(output, charset), true);
-        writer.append("--" + boundary).append(CRLF);
-        writer.append("Content-Disposition: form-data; name=\"binaryFile\"; filename=\"" + audioFile.getName() + "\"").append(CRLF);
-        writer.append("Content-Length: " + audioFile.length()).append(CRLF);
-        writer.append("Content-Type: " + URLConnection.guessContentTypeFromName(audioFile.getName())).append(CRLF);
+        writer.append("--").append(boundary).append(CRLF);
+        writer.append("Content-Disposition: form-data; name=\"binaryFile\"; filename=\"").append(audioFile.getName()).append("\"").append(CRLF);
+        writer.append("Content-Length: ").append(String.valueOf(audioFile.length())).append(CRLF);
+        writer.append("Content-Type: ").append(URLConnection.guessContentTypeFromName(audioFile.getName())).append(CRLF);
         writer.append("Content-Transfer-Encoding: binary").append(CRLF);
         writer.append(CRLF).flush();
         output.write(audioByteArray);

@@ -2,10 +2,13 @@ package com.ambisense.ambisense;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
+import androidx.core.app.ActivityCompat;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.CompoundButton;
@@ -38,7 +41,14 @@ public class SettingsActivity extends AppCompatActivity {
             Intent recordingIntent = new Intent(this, StartRecording.class);
             if (isChecked) {
                 identifySoundsSettingTextView.setText(R.string.soundSettings_record_summaryOn);
-                startService(recordingIntent);
+                if (ActivityCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
+
+                    ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.RECORD_AUDIO}, 10);
+
+                } else{
+                    startService(recordingIntent);
+                }
+
             } else {
                 identifySoundsSettingTextView.setText(R.string.soundSettings_record_summaryOff);
                 stopService(recordingIntent);
