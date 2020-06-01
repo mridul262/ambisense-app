@@ -21,4 +21,6 @@
     <string name="soundSettings_record_summaryOn">Switch off to identify sounds</string>
     <string name="soundSettings_record_summaryOff">Switch on to stop identifying sounds</string>
     <string name="settingsIcon">Settings</string>
+    <string name="channel_name">ambisenseNotification</string>
+    <string name="channel_description">ambisense Notifications</string>
 </resources>

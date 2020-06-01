@@ -6,12 +6,12 @@ import android.app.Service;
 import android.content.Intent;
 import android.media.MediaRecorder;
 import android.os.IBinder;
-import android.provider.MediaStore;
 import android.util.Log;
+
+import androidx.core.app.NotificationCompat;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
@@ -19,13 +19,8 @@ import java.io.PrintWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
-import java.nio.file.Files;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class StartRecording extends Service {
-    // Name of the audio file
-    private String fileName;
     // Records the phone audio
     private MediaRecorder recorder;
     // The audiofile containing the audio recording
@@ -41,18 +36,12 @@ public class StartRecording extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
         try {
             recordingStart();
+            Notification startRecordingNotification = notificationHelper();
+            startForeground(50074, startRecordingNotification);
             Log.e("Recording Start", "Start Recording");
         } catch (IOException e) {
             e.printStackTrace();
         }
-//        if(intent != null){
-//            try {
-//                recordingStart();
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//        }
-
         return START_STICKY;
 
     }
@@ -77,8 +66,20 @@ public class StartRecording extends Service {
         throw new UnsupportedOperationException("Not yet implemented");
     }
 
-    private void notificationHelper(){
+    private Notification notificationHelper(){
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
 
+        Notification serviceNotification = new NotificationCompat.Builder(this, getString(R.string.channel_name))
+                .setSmallIcon(R.drawable.ic_launcher_background)
+                .setContentTitle("Sound Identification is On")
+                .setContentText("Sounds are being actively identified")
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
+                .setContentIntent(pendingIntent)
+                .setOngoing(true).build();
+
+        return serviceNotification;
     }
 
     private void recordingStart() throws IOException{
@@ -137,57 +138,4 @@ public class StartRecording extends Service {
         int responseCode = connection.getResponseCode();
         System.out.println(responseCode);
     }
-
-//    private void recordingHelper() throws IOException {
-//        MediaRecorder recorder = new MediaRecorder();
-//            File audioFile = new File("AudioRecording.aac");
-//            recorder.setAudioSource(MediaRecorder.AudioSource.MIC);
-//            recorder.setOutputFormat(MediaRecorder.OutputFormat.AAC_ADTS);
-//            recorder.setAudioEncoder(MediaRecorder.AudioEncoder.AAC);
-//
-//            recorder.setOutputFile(audioFile);
-//            try {
-//                recorder.prepare();
-//                recorder.start();
-//
-//                Timer recorderTimer = new Timer();
-//                recorderTimer.schedule(new TimerTask() {
-//                    @Override
-//                    public void run() {
-//                        recorder.stop();
-//                        recorder.release();
-//                    }
-//                }, 60000 * 15);
-//            } catch (IOException e) {
-//                System.out.println("IOException caused in recorder by: " + e.getCause());
-//                System.out.println("IOException message in recorder: " + e.getMessage());
-//
-//                Log.e(e.getMessage(), "recording failed");
-//
-//            }
-//        final String POST_URL = "http://288b0f001382.ngrok.io";
-//        String boundary = Long.toHexString(System.currentTimeMillis());
-//        String CRLF = "\r\n";
-//        String charset = "UTF-8";
-//        URLConnection connection = new URL(POST_URL).openConnection();
-//        connection.setDoInput(true);
-//        connection.setRequestProperty("Content-Type", "multipart/form-data; boundary=" + boundary);
-//        try (
-//                OutputStream output = connection.getOutputStream();
-//                PrintWriter writer = new PrintWriter(new OutputStreamWriter(output, charset), true);
-//        ) {
-//            writer.append("--" + boundary).append(CRLF);
-//            writer.append("Content-Disposition: form-data; name=\"binaryFile\"; filename=\"" + audioFile.getName() + "\"").append(CRLF);
-//            writer.append("Content-Length: " + audioFile.length()).append(CRLF);
-//            writer.append("Content-Type: " + URLConnection.guessContentTypeFromName(audioFile.getName())).append(CRLF);
-//            writer.append("Content-Transfer-Encoding: binary").append(CRLF);
-//            writer.append(CRLF).flush();
-//            Files.copy(audioFile.toPath(), output);
-//            output.flush();
-//
-//            int responseCode = ((HttpURLConnection) connection).getResponseCode();
-//            System.out.println("Response code: [" + responseCode + "]");
-//        }
-
-//    }
 }
