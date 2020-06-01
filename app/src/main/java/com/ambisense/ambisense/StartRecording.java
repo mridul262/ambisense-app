@@ -5,6 +5,7 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
 import android.media.MediaRecorder;
+import android.os.AsyncTask;
 import android.os.IBinder;
 import android.util.Log;
 
@@ -16,7 +17,10 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
 import java.net.URL;
 import java.net.URLConnection;
 
@@ -26,7 +30,7 @@ public class StartRecording extends Service {
     // The audiofile containing the audio recording
     private File audioFile;
     // The server url to which the audiofile is sent
-    final private String postURL =  "http://288b0f001382.ngrok.io";
+    final private String postURL =  "http://755ca208a53a.ngrok.io";
     private boolean isAudioRecording = false;
 
     public StartRecording() {
@@ -114,28 +118,65 @@ public class StartRecording extends Service {
         fileInputStream.read(audioByteArray);
         fileInputStream.close();
 
-        URL url = new URL(postURL);
-        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-        connection.setDoInput(true);
-        connection.setRequestMethod("POST");
-        String boundary = Long.toHexString(System.currentTimeMillis());
-        connection.setRequestProperty("Content-Type", "multipart/form-data; boundary=" + boundary);
+        new Thread(() -> {
+            URL url = null;
+            try {
+                url = new URL(postURL);
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
+            HttpURLConnection connection = null;
+            try {
+                connection = (HttpURLConnection) url.openConnection();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            connection.setDoInput(true);
+            try {
+                connection.setRequestMethod("POST");
+            } catch (ProtocolException e) {
+                e.printStackTrace();
+            }
+            String boundary = Long.toHexString(System.currentTimeMillis());
+            connection.setRequestProperty("Content-Type", "multipart/form-data; boundary=" + boundary);
 
-        OutputStream output = connection.getOutputStream();
+            OutputStream output = null;
+            try {
+                output = connection.getOutputStream();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 //        output.write(audioByteArray);
-        String CRLF = "\r\n";
-        String charset = "UTF-8";
+            String CRLF = "\r\n";
+            String charset = "UTF-8";
 
-        PrintWriter writer = new PrintWriter(new OutputStreamWriter(output, charset), true);
-        writer.append("--").append(boundary).append(CRLF);
-        writer.append("Content-Disposition: form-data; name=\"binaryFile\"; filename=\"").append(audioFile.getName()).append("\"").append(CRLF);
-        writer.append("Content-Length: ").append(String.valueOf(audioFile.length())).append(CRLF);
-        writer.append("Content-Type: ").append(URLConnection.guessContentTypeFromName(audioFile.getName())).append(CRLF);
-        writer.append("Content-Transfer-Encoding: binary").append(CRLF);
-        writer.append(CRLF).flush();
-        output.write(audioByteArray);
+            PrintWriter writer = null;
+            try {
+                writer = new PrintWriter(new OutputStreamWriter(output, charset), true);
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+            writer.append("--").append(boundary).append(CRLF);
+            writer.append("Content-Disposition: form-data; name=\"file\"; filename=\"").append(audioFile.getName()).append("\"").append(CRLF);
+            writer.append("Content-Length: ").append(String.valueOf(audioFile.length())).append(CRLF);
+            writer.append("Content-Type: ").append(URLConnection.guessContentTypeFromName(audioFile.getName())).append(CRLF);
+            writer.append("Content-Transfer-Encoding: binary").append(CRLF);
+            writer.append(CRLF).flush();
+            try {
+                output.write(audioByteArray);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
-        int responseCode = connection.getResponseCode();
-        System.out.println(responseCode);
+            int responseCode = 0;
+            try {
+                responseCode = connection.getResponseCode();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            System.out.println(responseCode);
+        }).start();
     }
+
+
 }
