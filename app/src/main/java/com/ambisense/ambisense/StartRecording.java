@@ -40,13 +40,8 @@ public class StartRecording extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         try {
-            if(intent.getAction().equals("startRecording")){
-                recordingStart();
-            }
-            else if(intent.getAction().equals("stopRecording")){
-                recordingStop();
-                stopSelf();
-            }
+            recordingStart();
+            Log.e("Recording Start", "Start Recording");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -67,6 +62,7 @@ public class StartRecording extends Service {
         try {
             if(isAudioRecording){
                 recordingStop();
+                Log.e("Recording Stop", "Stop Recording");
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -87,7 +83,7 @@ public class StartRecording extends Service {
 
     private void recordingStart() throws IOException{
             recorder = new MediaRecorder();
-            audioFile = new File("AudioRecording.aac");
+            audioFile = new File(this.getFilesDir(), "AudioRecording.aac");
             recorder.setAudioSource(MediaRecorder.AudioSource.MIC);
             recorder.setOutputFormat(MediaRecorder.OutputFormat.AAC_ADTS);
             recorder.setAudioEncoder(MediaRecorder.AudioEncoder.AAC);

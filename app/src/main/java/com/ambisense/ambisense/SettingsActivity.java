@@ -38,6 +38,7 @@ public class SettingsActivity extends AppCompatActivity {
 
             editorNew.putBoolean("identifySoundsSetting", isChecked);
             TextView identifySoundsSettingTextView = findViewById(R.id.settings_identifySounds_description);
+            Intent recordingIntent = new Intent(this, StartRecording.class);
             if (isChecked) {
                 identifySoundsSettingTextView.setText(R.string.soundSettings_record_summaryOn);
                 if (ActivityCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
@@ -45,16 +46,12 @@ public class SettingsActivity extends AppCompatActivity {
                     ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.RECORD_AUDIO}, 10);
 
                 } else{
-                    Intent recordingIntent = new Intent(this, StartRecording.class);
-                    recordingIntent.setAction("startRecording");
                     startService(recordingIntent);
                 }
 
             } else {
                 identifySoundsSettingTextView.setText(R.string.soundSettings_record_summaryOff);
-                Intent recordingIntent = new Intent(this, StartRecording.class);
-                recordingIntent.setAction("stopRecording");
-                startService(recordingIntent);
+                stopService(recordingIntent);
             }
             editorNew.apply();
         });
