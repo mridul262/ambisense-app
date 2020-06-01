@@ -76,7 +76,7 @@ public class StartRecording extends Service {
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
 
         Notification serviceNotification = new NotificationCompat.Builder(this, getString(R.string.channel_name))
-                .setSmallIcon(R.drawable.ic_launcher_background)
+                .setSmallIcon(R.drawable.ic_launcher_foreground)
                 .setContentTitle("Sound Identification is On")
                 .setContentText("Sounds are being actively identified")
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
@@ -162,6 +162,8 @@ public class StartRecording extends Service {
             writer.append("Content-Type: ").append(URLConnection.guessContentTypeFromName(audioFile.getName())).append(CRLF);
             writer.append("Content-Transfer-Encoding: binary").append(CRLF);
             writer.append(CRLF).flush();
+            writer.append("--" + boundary + "--").append(CRLF);
+            writer.close();
             try {
                 output.write(audioByteArray);
             } catch (IOException e) {
