@@ -1,5 +1,7 @@
 package com.ambisense.ambisense;
 
+import android.app.Notification;
+import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
 import android.media.MediaRecorder;
@@ -38,7 +40,13 @@ public class StartRecording extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         try {
-            recordingStart();
+            if(intent.getAction().equals("startRecording")){
+                recordingStart();
+            }
+            else if(intent.getAction().equals("stopRecording")){
+                recordingStop();
+                stopSelf();
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -73,6 +81,9 @@ public class StartRecording extends Service {
         throw new UnsupportedOperationException("Not yet implemented");
     }
 
+    private void notificationHelper(){
+
+    }
 
     private void recordingStart() throws IOException{
             recorder = new MediaRecorder();

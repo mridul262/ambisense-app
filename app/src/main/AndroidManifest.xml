@@ -12,7 +12,8 @@
         <service
             android:name=".StartRecording"
             android:enabled="true"
-            android:exported="true" />
+            android:exported="true"
+            />
 
         <activity android:name=".SettingsActivity" />
         <activity android:name=".ui.TitleBar" />
